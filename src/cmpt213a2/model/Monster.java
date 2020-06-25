@@ -7,7 +7,7 @@ public class Monster {
 
     public int yCoord;
     public int xCoord;
-    public static ArrayList<Monster> monsterList = new ArrayList<>();
+    public static int lastMove;
 
     public Monster(int yCoord, int xCoord) {
         this.yCoord = yCoord;
@@ -31,23 +31,25 @@ public class Monster {
     }
 
 
-    //move monster
-    public static void moveMonster(int yCoord, int xCoord) {
+    private void moveMonster()
+    {
         Random random = new Random();
-        int move = random.nextInt(4 - 1 + 1) + 1;
-        switch (move) {
-            case 1:// move up
-                yCoord++;
-                break;
-            case 2: // move down
-                yCoord--;
-                break;
-            case 3: // move right
-                xCoord++;
-                break;
-            case 4: // move left
-                xCoord--;
-                break;
+        int move = random.nextInt(4-1+1) + 1;
+        if(move != lastMove)
+        {
+            switch (move)
+            {
+                case 1 -> yCoord++;
+                case 2 -> yCoord--;
+                case 3 -> xCoord++;
+                case 4 -> xCoord--;
+            }
+            lastMove = move;
+        }
+        else
+        {
+            move = random.nextInt(4-1+1) + 1;
+            moveMonster();
         }
 
     }

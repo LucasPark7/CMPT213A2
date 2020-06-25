@@ -10,7 +10,7 @@ public class Power {
     }
 
     public void setyCoord(int yCoord) {
-        this.yCoord = yCoord;
+        Power.yCoord = yCoord;
     }
 
     public int getxCoord() {
@@ -18,12 +18,12 @@ public class Power {
     }
 
     public void setxCoord(int xCoord) {
-        this.xCoord = xCoord;
+        Power.xCoord = xCoord;
     }
 
     public Power(int yCoord, int xCoord)
     {
-        this.yCoord = yCoord;
-        this.xCoord = xCoord;
+        Power.yCoord = yCoord;
+        Power.xCoord = xCoord;
     }
 }
