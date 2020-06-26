@@ -81,7 +81,7 @@ public class MazeLogic {
                     //add new edges to edge list
                     addEdges(edgeList, selectedWall.getxCoord()+1,selectedWall.getyCoord());
                 }
-                //if another edge connects to cell then it becomes a wall
+                //if another edge connects to cell then it becomes a wallS
                 maze[selectedWall.getxCoord()+1][selectedWall.getyCoord()] = "Wall";
             }
             if (selectedWall.getDirection().equals("South")) {
