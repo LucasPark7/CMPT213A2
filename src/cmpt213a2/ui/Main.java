@@ -23,6 +23,7 @@ public class Main {
         while (!(gameDone)) {
             System.out.println("Maze:");
 
+            gameDone = true;
         }
     }
 }

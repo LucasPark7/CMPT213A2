@@ -15,17 +15,17 @@ public class MazeLogic {
                 //create walls of the maze
                 if (i == 0 || i == cols-1 ||
                         j == 0 || j == rows-1) {
-                    maze.add(new Cell( "Edge", i, j, true, true, (i * rows) + j));
+                    maze.add(new Cell( "Edge", i, j, true, true, (i * rows) + j, 0));
                 } else {
                     //fill in rest of maze
                     if (i %2 == 1) {
-                        maze.add(new Cell( "Empty", i, j, false, false, (i * rows) + j));
+                        maze.add(new Cell( "Empty", i, j, false, false, (i * rows) + j, 0));
                     }
                     else if (j %2 == 1) {
-                        maze.add(new Cell("Empty", i, j, false, false, (i * rows) + j));
+                        maze.add(new Cell("Empty", i, j, false, false, (i * rows) + j, 0));
                     }
                     else {
-                        maze.add(new Cell("Wall", i, j, false, false, (i * rows) + j));
+                        maze.add(new Cell("Wall", i, j, false, false, (i * rows) + j,0));
                     }
                 }
             }
@@ -36,8 +36,11 @@ public class MazeLogic {
         //set Hero and Monsters in corners of maze
         maze.get(21).setType("Hero");
         maze.get(38).setType("Monster");
+        maze.get(38).setMonsterCount(1);
         maze.get(261).setType("Monster");
+        maze.get(261).setMonsterCount(1);
         maze.get(278).setType("Monster");
+        maze.get(278).setMonsterCount(1);
 
         return maze;
     }

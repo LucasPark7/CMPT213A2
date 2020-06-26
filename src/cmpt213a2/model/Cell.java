@@ -6,14 +6,16 @@ public class Cell {
     private int yCoord;
     private boolean revealed;
     private boolean checked;
-    private int index;
+    private final int index;
+    private int monsterCount;
 
-    public Cell(String type, int xCoord, int yCoord, boolean revealed, boolean checked, int index) {
+    public Cell(String type, int xCoord, int yCoord, boolean revealed, boolean checked, int index, int monsterCount) {
         this.type = type;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.revealed = revealed;
         this.index = index;
+        this.monsterCount = monsterCount;
     }
 
     public String getType() {
@@ -58,5 +60,13 @@ public class Cell {
 
     public int getIndex() {
         return index;
+    }
+
+    public int getMonsterCount() {
+        return monsterCount;
+    }
+
+    public void setMonsterCount(int monsterCount) {
+        this.monsterCount = monsterCount;
     }
 }
