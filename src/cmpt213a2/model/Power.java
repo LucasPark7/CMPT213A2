@@ -1,12 +1,12 @@
 package cmpt213a2.model;
 
 public class Power {
-    private int yCoord;
-    private int xCoord;
+    public  static int yCoord;
+    public static int xCoord;
 
     public Power(int yCoord, int xCoord) {
-        this.yCoord = yCoord;
-        this.xCoord = xCoord;
+        Power.yCoord = yCoord;
+        Power.xCoord = xCoord;
     }
 
     public int getyCoord() {
@@ -14,7 +14,7 @@ public class Power {
     }
 
     public void setyCoord(int yCoord) {
-        this.yCoord = yCoord;
+        Power.yCoord = yCoord;
     }
 
     public int getxCoord() {
@@ -22,6 +22,6 @@ public class Power {
     }
 
     public void setxCoord(int xCoord) {
-        this.xCoord = xCoord;
+        Power.xCoord = xCoord;
     }
 }
