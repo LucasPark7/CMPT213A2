@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Monster {
 
-    public int yCoord;
-    public int xCoord;
+    public  int yCoord;
+    public  int xCoord;
     public static int lastMove;
 
     public Monster(int yCoord, int xCoord) {

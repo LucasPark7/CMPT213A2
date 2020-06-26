@@ -3,14 +3,14 @@ package cmpt213a2.model;
 import java.util.Scanner;
 
 public class Hero {
-     private int numPowers;
-     private int yCoord;
-     private int xCoord;
+     public static int numPowers;
+     public static int yCoord;
+     public static int xCoord;
 
     public Hero(int numPowers, int yCoord, int xCoord) {
         this.numPowers = numPowers;
-        this.yCoord = yCoord;
-        this.xCoord = xCoord;
+        Hero.yCoord = yCoord;
+        Hero.xCoord = xCoord;
     }
 
     public int getNumPowers() {
