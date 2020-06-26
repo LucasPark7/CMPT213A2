@@ -99,6 +99,13 @@ public class MazeLogic {
             //remove edges
             removeEdge(edgeList, selectedWall);
         }
+        for (String[] cellArray : maze) {
+            for (String cell : cellArray) {
+                if (!(cell.equals("Wall"))) {
+                    cell = "Empty";
+                }
+            }
+        }
     }
 
     private static void addEdges(ArrayList<Edge> edgeList, int xCoord, int yCoord) {
