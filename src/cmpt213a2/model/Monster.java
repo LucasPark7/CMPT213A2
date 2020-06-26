@@ -54,7 +54,6 @@ public class Monster {
         }
         else
         {
-            move = random.nextInt(4-1+1) + 1;
             moveMonster();
         }
 

@@ -25,21 +25,30 @@ public class Main {
         monsters.add(m2);
         monsters.add(m3);
 
+
+        String[][] maze = MazeLogic.createMaze();
+
         int numMonsters = 3; // # monsters killed to win
         boolean gameDone = false;
-        Maze maze = MazeLogic.createMaze();
-        for(int i = 0; i < maze.size(); i++)
+
+        for(int i = 0; i < maze.length; i++)
         {
-            if(maze.get(i).getType().equals("Hero") || maze.get(i).getType().equals("Wall"))
+            for(int j = 0; j < maze.length; j++)
             {
-                Random random = new Random();
-                int x = random.nextInt(19); // 0 to 18
-                int y = random.nextInt(14);
-                Power.xCoord = x;
-                Power.yCoord = y;
+                if(maze[i][j].equals("Hero") || maze[i][j].equals("Wall"))
+                {
+                    Random random = new Random();
+                    int x = random.nextInt(19); // 0 to 18
+                    int y = random.nextInt(14);
+                    Power.xCoord = x;
+                    Power.yCoord = y;
+                }
             }
-        }
+            }
+
         displayHelp();
+
+
 
         while (!(gameDone)) {
             System.out.println("Maze:");
@@ -63,12 +72,15 @@ public class Main {
                     numMonsters = 1;
                     break;
                 case "m":
-                    for(int i = 0; i < maze.size(); i++)
+                    for(int i = 0; i < maze.length; i++)
                     {
-                        if(!maze.get(i).isRevealed())
+                        for(int j = 0; j < maze.length; j++)
                         {
-                            System.out.print(" ");
+                            {
+                                //System.out.print(" ");
+                            }
                         }
+
                     }
                     break;
                 case "w":
@@ -92,7 +104,7 @@ public class Main {
     }
 
 
-    private static void heroMonsterCheck(Maze maze, Hero hero, ArrayList<Monster> monsters, boolean gameDone)
+    private static void heroMonsterCheck(String[][] maze, Hero hero, ArrayList<Monster> monsters, boolean gameDone)
     {
         for(int i = 0; i < monsters.size(); i++) // hero vs monster
         {
@@ -112,21 +124,25 @@ public class Main {
         }
     }
 
-    private static void heroPowerCheck(Maze maze, Hero hero)
+    private static void heroPowerCheck(String[][] maze, Hero hero)
     {
         if ((hero.getyCoord() == Power.yCoord) && (hero.getxCoord() == Power.xCoord))
         {
             hero.setNumPowers(hero.numPowers++);
-            for(int i = 0; i < maze.size(); i++)
+            for(int i = 0; i < maze.length; i++)
             {
-                if(maze.get(i).getType().equals("Hero") || maze.get(i).getType().equals("Wall"))
+                for(int j = 0; j < maze.length; j++)
                 {
-                    Random random = new Random();
-                    int x = random.nextInt(19); // 0 to 18
-                    int y = random.nextInt(14);
-                    Power.xCoord = x;
-                    Power.yCoord = y;
+                    if(maze[i][j].equals("Hero") || maze[i][j].equals("Wall"))
+                    {
+                        Random random = new Random();
+                        int x = random.nextInt(19); // 0 to 18
+                        int y = random.nextInt(14);
+                        Power.xCoord = x;
+                        Power.yCoord = y;
+                    }
                 }
+
             }
         }
     }
