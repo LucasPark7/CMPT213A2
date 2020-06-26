@@ -1,3 +1,11 @@
+//Granton Lo
+//ID:301360495
+//Email: grantonl@sfu.ca
+
+//Lucas Park
+//Email: lpa24@sfu.ca
+//ID: 301362079
+
 package cmpt213a2.model;
 
 import java.util.ArrayList;
