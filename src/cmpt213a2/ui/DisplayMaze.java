@@ -1,28 +1,40 @@
+//Granton Lo
+//ID:301360495
+//Email: grantonl@sfu.ca
+
+//Lucas Park
+//Email: lpa24@sfu.ca
+//ID: 301362079
+
 package cmpt213a2.ui;
 
 import cmpt213a2.model.Maze;
 
+//displays the maze to string
 public class DisplayMaze {
-    public static void displayMaze(Maze maze) {
-        for (int i = 0; i < maze.size(); i++) {
-            if (maze.get(i).isRevealed()) {
-                System.out.println(".");
+    public static void displayMaze(String[][] maze) {
+        System.out.println("####################");
+        for (int i = 0; i < 13; i++) {
+            System.out.println("#");
+            for (int j = 0; j < 19; j++) {
+                if(maze[j-1][i] == "Hero") {
+                    System.out.println("@");
+                }
+                else if(maze[j-1][i] == "Monster") {
+                    System.out.println("!");
+                }
+                else if(maze[j-1][i] == "Power") {
+                    System.out.println("$");
+                }
+                else if(maze[j-1][i] == "Hidden") {
+                    System.out.println(".");
+                }
+                else {
+                    System.out.println(" ");
+                }
             }
-            else if (maze.get(i).getType() == "Hero") {
-                System.out.println("@");
-            }
-            else if (maze.get(i).getType() == "Monster") {
-                System.out.println("!");
-            }
-            else if (maze.get(i).getType() == "Power") {
-                System.out.println("$");
-            }
-            else if (maze.get(i).getType() == "Wall") {
-                System.out.println("#");
-            }
-            else {
-                System.out.println(" ");
-            }
+            System.out.println("#");
         }
+        System.out.println("####################");
     }
 }
