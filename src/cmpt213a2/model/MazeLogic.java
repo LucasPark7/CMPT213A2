@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MazeLogic {
-    private Maze maze;
-    private int cols = 20;
-    private int rows = 15;
+    private static Maze maze;
+    private static int cols = 20;
+    private static int rows = 15;
 
-    public Maze createMaze(){
+    public static Maze createMaze(){
         //creates 20x15 arraylist
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
@@ -31,7 +31,7 @@ public class MazeLogic {
             }
         }
 
-        //generateMaze();
+        generateMaze();
 
         //set Hero and Monsters in corners of maze
         maze.get(21).setType("Hero");
@@ -42,7 +42,7 @@ public class MazeLogic {
         return maze;
     }
 
-    /*private void generateMaze() {
+    private static void generateMaze() {
         Random random = new Random();
         ArrayList<Cell> cellList = new ArrayList<>();
 
@@ -54,10 +54,6 @@ public class MazeLogic {
             Cell selectedWall = cellList.get(random.nextInt(cellList.size()));
             int wallIndex = selectedWall.getIndex();
 
-            if (maze.get(wallIndex+1).isChecked() &&
-              !(maze.get(wallIndex-1).isChecked())
-
-            }
         }
-    }*/
+    }
 }

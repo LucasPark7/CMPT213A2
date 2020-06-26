@@ -37,13 +37,10 @@ public class Hero {
         this.xCoord = xCoord;
     }
 
-    //rework this to take in an int input and return the correct case
-    /*private static void moveHero() {
+    private void moveHero(String input) {
         do {
-            Scanner sc = new Scanner(System.in);
-            String heroInput = sc.next().toLowerCase();
-            switch (heroInput) {
-                case "w" -> Hero.yCoord++;
+            switch (input) {
+                case "w" -> yCoord++;
                 case "a" -> xCoord--;
                 case "s" -> yCoord--;
                 case "d" -> xCoord++;
@@ -51,6 +48,6 @@ public class Hero {
 
         } while (true);
 
-    }*/
+    }
 
 }
