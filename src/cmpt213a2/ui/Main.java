@@ -11,7 +11,7 @@ public class Main {
         Hero hero = new Hero(0, 1, 1, 3);
         int numMonsters = 3;
         boolean gameDone = false;
-        Maze maze = MazeLogic.createMaze();
+        String[][] maze = MazeLogic.createMaze();
 
         System.out.println("DIRECTIONS:");
         System.out.println("    Kill 3 Monsters!");
