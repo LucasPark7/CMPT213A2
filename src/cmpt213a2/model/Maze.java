@@ -12,4 +12,8 @@ public class Maze {
     public void add(Cell cell) {
         maze.add(cell);
     }
+
+    public int size() {
+        return maze.size();
+    }
 }

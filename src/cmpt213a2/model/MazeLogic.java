@@ -13,25 +13,11 @@ public class MazeLogic {
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
                 //create walls of the maze
-                if (i == 0 || i == cols-1 ||
-                        j == 0 || j == rows-1) {
-                    maze.add(new Cell( "Edge", i, j, true, true, (i * rows) + j, 0));
-                } else {
-                    //fill in rest of maze
-                    if (i %2 == 1) {
-                        maze.add(new Cell( "Empty", i, j, false, false, (i * rows) + j, 0));
-                    }
-                    else if (j %2 == 1) {
-                        maze.add(new Cell("Empty", i, j, false, false, (i * rows) + j, 0));
-                    }
-                    else {
-                        maze.add(new Cell("Wall", i, j, false, false, (i * rows) + j,0));
-                    }
-                }
+                maze.add(new Cell("Wall", i, j, false, false, (i * rows) + j, 0));
             }
         }
 
-        generateMaze();
+        //generateMaze();
 
         //set Hero and Monsters in corners of maze
         maze.get(21).setType("Hero");
@@ -56,6 +42,7 @@ public class MazeLogic {
         while (cellList.size() > 0) {
             Cell selectedWall = cellList.get(random.nextInt(cellList.size()));
             int wallIndex = selectedWall.getIndex();
+
 
         }
     }

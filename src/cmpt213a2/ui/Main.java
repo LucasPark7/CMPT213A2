@@ -1,10 +1,15 @@
 package cmpt213a2.ui;
 
+import cmpt213a2.model.Hero;
 import cmpt213a2.model.Maze;
 import cmpt213a2.model.MazeLogic;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Hero hero = new Hero(0, 1, 1, 3);
+        int numMonsters = 3;
         boolean gameDone = false;
         Maze maze = MazeLogic.createMaze();
 
@@ -22,8 +27,20 @@ public class Main {
 
         while (!(gameDone)) {
             System.out.println("Maze:");
+            DisplayMaze.displayMaze(maze);
 
-            gameDone = true;
+            System.out.println("Total number of monsters to be killed: " + numMonsters);
+            System.out.println("Number of Powers currently in possession: " + hero.getNumPowers());
+            System.out.println("Number of Monsters Alive: " + hero.getMonstersRemain());
+            System.out.println("Enter your move [WASD?]: ");
+
+            Scanner scanner = new Scanner(System.in);
+            int input = scanner.nextInt();
+            switch (input) {
+                default:
+                    gameDone = true;
+                    break;
+            }
         }
     }
 }
