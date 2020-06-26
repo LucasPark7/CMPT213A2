@@ -1,15 +1,21 @@
+//Granton Lo
+//ID:301360495
+//Email: grantonl@sfu.ca
+
+//Lucas Park
+//Email: lpa24@sfu.ca
+//ID: 301362079
 package cmpt213a2.model;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Monster {
 
-    public  int yCoord;
-    public  int xCoord;
+    private int yCoord;
+    private int xCoord;
     public static int lastMove;
 
-    public Monster(int yCoord, int xCoord) {
+    public Monster(int xCoord, int yCoord) {
         this.yCoord = yCoord;
         this.xCoord = xCoord;
     }
@@ -31,7 +37,7 @@ public class Monster {
     }
 
 
-    private void moveMonster()
+    public void moveMonster()
     {
         Random random = new Random();
         int move = random.nextInt(4-1+1) + 1;

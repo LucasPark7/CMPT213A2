@@ -1,14 +1,21 @@
+//Granton Lo
+//ID:301360495
+//Email: grantonl@sfu.ca
+
+//Lucas Park
+//Email: lpa24@sfu.ca
+//ID: 301362079
+
 package cmpt213a2.model;
 
-import java.util.Scanner;
 
 public class Hero {
-     private int numPowers;
+     public int numPowers;
      private int yCoord;
      private int xCoord;
      private int monstersRemain;
 
-    public Hero(int numPowers, int yCoord, int xCoord, int monstersRemain) {
+    public Hero(int numPowers, int xCoord, int yCoord, int monstersRemain) {
         this.numPowers = numPowers;
         this.yCoord = yCoord;
         this.xCoord = xCoord;
@@ -47,7 +54,7 @@ public class Hero {
         this.monstersRemain = monstersRemain;
     }
 
-    private void moveHero(String input) {
+    public void moveHero(String input) {
         do {
             switch (input) {
                 case "w" -> yCoord++;
@@ -55,7 +62,6 @@ public class Hero {
                 case "s" -> yCoord--;
                 case "d" -> xCoord++;
             }
-
         } while (true);
 
     }

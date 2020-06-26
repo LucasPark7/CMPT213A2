@@ -1,10 +1,12 @@
 package cmpt213a2.model;
 
+import java.util.Random;
+
 public class Power {
-    public  static int yCoord;
+    public static int yCoord;
     public static int xCoord;
 
-    public Power(int yCoord, int xCoord) {
+    public Power(int xCoord, int yCoord) {
         Power.yCoord = yCoord;
         Power.xCoord = xCoord;
     }
@@ -24,4 +26,5 @@ public class Power {
     public void setxCoord(int xCoord) {
         Power.xCoord = xCoord;
     }
+
 }
