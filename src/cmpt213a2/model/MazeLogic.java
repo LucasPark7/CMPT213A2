@@ -13,9 +13,9 @@ import java.util.Random;
 
 //Holds methods for generating the maze
 public class MazeLogic {
-    private static String[][] maze;
     private static final int cols = 18;
     private static final int rows = 13;
+    private static String[][] maze = new String[cols][rows];
 
     public static String[][] createMaze(){
         //creates 18x13 2D array
@@ -67,7 +67,7 @@ public class MazeLogic {
                     maze[selectedWall.getxCoord()-1][selectedWall.getyCoord()] = "Empty";
 
                     //add new edges to edge list
-                    addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()-1);
+                    addEdges(edgeList, selectedWall.getxCoord()-1,selectedWall.getyCoord());
                 }
                 //if another edge connects to cell then it becomes a wall
                 maze[selectedWall.getxCoord()-1][selectedWall.getyCoord()] = "Wall";
@@ -79,7 +79,7 @@ public class MazeLogic {
                     maze[selectedWall.getxCoord()+1][selectedWall.getyCoord()] = "Empty";
 
                     //add new edges to edge list
-                    addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()-1);
+                    addEdges(edgeList, selectedWall.getxCoord()+1,selectedWall.getyCoord());
                 }
                 //if another edge connects to cell then it becomes a wall
                 maze[selectedWall.getxCoord()+1][selectedWall.getyCoord()] = "Wall";
@@ -91,7 +91,7 @@ public class MazeLogic {
                     maze[selectedWall.getxCoord()][selectedWall.getyCoord()+1] = "Empty";
 
                     //add new edges to edge list
-                    addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()-1);
+                    addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()+1);
                 }
                 //if another edge connects to cell then it becomes a wall
                 maze[selectedWall.getxCoord()][selectedWall.getyCoord()+1] = "Wall";
@@ -180,10 +180,10 @@ public class MazeLogic {
             maze[xCoord+1][yCoord] = "East";
 
             edgeList.add(new Edge(xCoord, yCoord, "West"));
-            maze[xCoord-1][yCoord] = "East";
+            maze[xCoord-1][yCoord] = "West";
 
             edgeList.add(new Edge(xCoord, yCoord, "North"));
-            maze[xCoord][yCoord-1] = "East";
+            maze[xCoord][yCoord-1] = "North";
         }
         else { //any non-edge case
             edgeList.add(new Edge(xCoord, yCoord, "East"));
