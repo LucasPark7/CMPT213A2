@@ -1,3 +1,10 @@
+//Granton Lo
+//ID:301360495
+//Email: grantonl@sfu.ca
+
+//Lucas Park
+//Email: lpa24@sfu.ca
+//ID: 301362079
 package cmpt213a2.model;
 
 public class Cell {
@@ -7,15 +14,13 @@ public class Cell {
     private boolean revealed;
     private boolean checked;
     private final int index;
-    private int monsterCount;
 
-    public Cell(String type, int xCoord, int yCoord, boolean revealed, boolean checked, int index, int monsterCount) {
+    public Cell(String type, int xCoord, int yCoord, boolean revealed, boolean checked, int index) {
         this.type = type;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.revealed = revealed;
         this.index = index;
-        this.monsterCount = monsterCount;
     }
 
     public String getType() {
@@ -61,12 +66,5 @@ public class Cell {
     public int getIndex() {
         return index;
     }
-
-    public int getMonsterCount() {
-        return monsterCount;
-    }
-
-    public void setMonsterCount(int monsterCount) {
-        this.monsterCount = monsterCount;
-    }
 }
+
