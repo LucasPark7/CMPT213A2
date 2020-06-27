@@ -70,6 +70,7 @@ public class Hero {
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
                 hero.setyCoord(hero.getyCoord() - 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                mazeList.get((hero.getyCoord() * 20) + hero.getxCoord()).setRevealed(true);
                 discover(mazeList, hero);
             }
             case "a" -> {
@@ -80,6 +81,7 @@ public class Hero {
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
                 hero.setxCoord(hero.getxCoord() - 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                mazeList.get((hero.getyCoord() * 20) + hero.getxCoord()).setRevealed(true);
                 discover(mazeList, hero);
             }
             case "s" -> {
@@ -90,6 +92,7 @@ public class Hero {
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
                 hero.setyCoord(hero.getyCoord() + 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                mazeList.get((hero.getyCoord() * 20) + hero.getxCoord()).setRevealed(true);
                 discover(mazeList, hero);
             }
             case "d" -> {
@@ -100,6 +103,7 @@ public class Hero {
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
                 hero.setxCoord(hero.getxCoord() + 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                mazeList.get((hero.getyCoord() * 20) + hero.getxCoord()).setRevealed(true);
                 discover(mazeList, hero);
             }
         }
@@ -107,15 +111,15 @@ public class Hero {
 
     public static void discover(Maze mazeList, Cell hero)
     {
-        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord()   ).setRevealed(true); // hero spot
-        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord() +1).setRevealed(true); // reveals right
-        mazeList.get(((hero.getyCoord()+1)  * 20) + hero.getxCoord()   ).setRevealed(true); // reveals up
-        mazeList.get(((hero.getyCoord()-1)  * 20) + hero.getxCoord() -1).setRevealed(true); // reveal down
-        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord() -1).setRevealed(true); //reveal left
-        mazeList.get(((hero.getyCoord()+1) * 20) + hero.getxCoord()  +1).setRevealed(true); // reveal top right
-        mazeList.get(((hero.getyCoord()-1) * 20) + hero.getxCoord()  +1).setRevealed(true); // reveal down right
-        mazeList.get(((hero.getyCoord()-1)  * 20) + hero.getxCoord() -1).setRevealed(true); //reveal down left
-        mazeList.get(((hero.getyCoord()+1)  * 20) + hero.getxCoord() -1).setRevealed(true);//reveal top left
+        mazeList.get((hero.getyCoord() * 20) + hero.getxCoord()).setRevealed(true); // hero spot
+        mazeList.get((hero.getyCoord()  * 20) + hero.getxCoord() + 1).setRevealed(true); // reveals right
+        mazeList.get(((hero.getyCoord() + 1) * 20) + hero.getxCoord()).setRevealed(true); // reveals up
+        mazeList.get(((hero.getyCoord() - 1) * 20) + hero.getxCoord() - 1).setRevealed(true); // reveal down
+        mazeList.get((hero.getyCoord()  * 20) + hero.getxCoord() -1).setRevealed(true); //reveal left
+        mazeList.get(((hero.getyCoord() + 1) * 20) + hero.getxCoord()  + 1).setRevealed(true); // reveal top right
+        mazeList.get(((hero.getyCoord() - 1) * 20) + hero.getxCoord()  + 1).setRevealed(true); // reveal down right
+        mazeList.get(((hero.getyCoord() - 1) * 20) + hero.getxCoord() - 1).setRevealed(true); //reveal down left
+        mazeList.get(((hero.getyCoord() +1 ) * 20) + hero.getxCoord() - 1).setRevealed(true);//reveal top left
     }
 
 

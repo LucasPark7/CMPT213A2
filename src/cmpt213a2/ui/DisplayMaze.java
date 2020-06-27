@@ -18,7 +18,7 @@ public class DisplayMaze {
     public static void displayMaze(Maze maze) {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 20; j++) {
-                if (!(maze.get((i*20) + j).isRevealed())) {
+                if (!(maze.get((i * 20) + j).isRevealed())) {
                     System.out.print(".");
                 }
                 else {
