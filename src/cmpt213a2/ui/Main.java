@@ -121,10 +121,9 @@ public class Main {
 
                     heroMonsterCheck(maze, hero, monsters);
 
-                    for(int i = 0; i < monsters.size(); i++)
+                    for(Monster monster: monsters)
                     {
-                        monsters.get(i).moveMonster(mazeList, monsters.get(i).getLastMove());
-                        heroMonsterCheck(maze, hero, monsters);
+                        monster.moveMonster(mazeList, monster.getLastMove(), mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()));
                     }
                     break;
                 default:

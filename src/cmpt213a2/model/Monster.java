@@ -51,7 +51,7 @@ public class Monster {
                 case 1:
                     if (!(mazeList.get((monster.getyCoord() - 1) * 20 + monster.getxCoord()).getType().equals("Wall"))) {
 
-                        mazeList.get(monster.getyCoord()).setType("Empty");
+                        mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setyCoord(monster.getyCoord() - 1);
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
                         moved = true;
@@ -60,7 +60,7 @@ public class Monster {
                 case 2:
                     if (!(mazeList.get((monster.getyCoord() + 1) * 20 + monster.getxCoord()).getType().equals("Wall"))) {
 
-                        mazeList.get(monster.getyCoord()).setType("Empty");
+                        mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setyCoord(monster.getyCoord() + 1);
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
                         lastMove = 1;
@@ -92,11 +92,11 @@ public class Monster {
             //if monster is forced to backtrack
             switch (lastMove) {
                 case 2:
-                    if (mazeList.get(monster.getyCoord() + 1).getType().equals("Wall") ||
-                            (mazeList.get(monster.getxCoord() + 1).getType().equals("Wall")) ||
-                            (mazeList.get(monster.getxCoord() - 1).getType().equals("Wall"))) {
+                    if (mazeList.get((monster.getyCoord() + 1) * 20 + monster.getxCoord()).getType().equals("Wall") ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() + 1).getType().equals("Wall")) ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() - 1).getType().equals("Wall"))) {
 
-                        mazeList.get(monster.getyCoord()).setType("Empty");
+                        mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setyCoord(monster.getyCoord() - 1);
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
                         lastMove = 1;
@@ -104,11 +104,11 @@ public class Monster {
                         break;
                     }
                 case 1:
-                    if (mazeList.get(monster.getyCoord() - 1).getType().equals("Wall") ||
-                            (mazeList.get(monster.getxCoord() + 1).getType().equals("Wall")) ||
-                            (mazeList.get(monster.getxCoord() - 1).getType().equals("Wall"))) {
+                    if (mazeList.get((monster.getyCoord() - 1) * 20 + monster.getxCoord()).getType().equals("Wall") ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() + 1).getType().equals("Wall")) ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() - 1).getType().equals("Wall"))) {
 
-                        mazeList.get(monster.getyCoord()).setType("Empty");
+                        mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setyCoord(monster.getyCoord() + 1);
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
                         lastMove = 2;
@@ -116,9 +116,9 @@ public class Monster {
                         break;
                     }
                 case 4:
-                    if (mazeList.get(monster.getyCoord() + 1).getType().equals("Wall") ||
-                            (mazeList.get(monster.getyCoord() - 1).getType().equals("Wall")) ||
-                            (mazeList.get(monster.getxCoord() - 1).getType().equals("Wall"))) {
+                    if (mazeList.get((monster.getyCoord() + 1) * 20 + monster.getxCoord()).getType().equals("Wall") ||
+                            (mazeList.get((monster.getyCoord() - 1) * 20 + monster.getxCoord()).getType().equals("Wall")) ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() - 1).getType().equals("Wall"))) {
 
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setxCoord(monster.getxCoord() + 1);
@@ -128,9 +128,9 @@ public class Monster {
                         break;
                     }
                 case 3:
-                    if (mazeList.get(monster.getyCoord() + 1).getType().equals("Wall") ||
-                            (mazeList.get(monster.getyCoord() - 1).getType().equals("Wall")) ||
-                            (mazeList.get(monster.getxCoord() + 1).getType().equals("Wall"))) {
+                    if (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() + 1).getType().equals("Wall") ||
+                            (mazeList.get((monster.getyCoord() - 1) * 20 + monster.getxCoord()).getType().equals("Wall")) ||
+                            (mazeList.get(monster.getyCoord() * 20 + monster.getxCoord() + 1).getType().equals("Wall"))) {
 
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Empty");
                         monster.setxCoord(monster.getxCoord() - 1);
