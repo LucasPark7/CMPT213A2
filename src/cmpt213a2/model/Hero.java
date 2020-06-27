@@ -68,7 +68,7 @@ public class Hero {
                     break;
                 }
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
-                hero.setyCoord(hero.getyCoord()-1);
+                hero.setyCoord(hero.getyCoord() - 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
                 discover(mazeList, hero);
             }
@@ -78,7 +78,7 @@ public class Hero {
                     break;
                 }
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
-                hero.setxCoord(hero.getxCoord()-1);
+                hero.setxCoord(hero.getxCoord() - 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
                 discover(mazeList, hero);
             }
@@ -88,7 +88,7 @@ public class Hero {
                     break;
                 }
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
-                hero.setyCoord(hero.getyCoord()+1);
+                hero.setyCoord(hero.getyCoord() + 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
                 discover(mazeList, hero);
             }
@@ -98,7 +98,7 @@ public class Hero {
                     break;
                 }
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
-                hero.setxCoord(hero.getxCoord()+1);
+                hero.setxCoord(hero.getxCoord() + 1);
                 mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
                 discover(mazeList, hero);
             }
