@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    private static Maze mazeList;
+    private static Maze mazeList = new Maze();
     private static Power power;
 
     public static void main(String[] args) {
@@ -54,9 +54,8 @@ public class Main {
                     Random random = new Random();
                     int x = random.nextInt(19); // 0 to 18
                     int y = random.nextInt(14);
-                    power.xCoord = x;
-                    power.yCoord = y;
-                    mazeList.get((x*18) + y).setType("Power");
+                    power = new Power(x,y);
+                    mazeList.get(x*y).setType("Power");
                 }
             }
         }
@@ -70,7 +69,7 @@ public class Main {
 
 
 
-        while (!(gameDone)) {
+        do {
             System.out.println("Maze:");
             DisplayMaze.displayMaze(mazeList);
 
@@ -101,7 +100,7 @@ public class Main {
                 case "a":
                 case "s":
                 case "d":
-                    hero.moveHero(input);
+                    hero.moveHero(input, mazeList);
 
                     heroPowerCheck(maze, hero);
 
@@ -114,7 +113,7 @@ public class Main {
                     }
                     break;
             }
-        }
+        }while(!gameDone);
     }
 
 
@@ -149,18 +148,15 @@ public class Main {
         if ((hero.getyCoord() == power.yCoord) && (hero.getxCoord() == power.xCoord))
         {
             hero.setNumPowers(hero.numPowers++);
-            for(int i = 0; i < maze.length; i++)
-            {
-                for(int j = 0; j < maze.length; j++)
-                {
-                    if(!(maze[i][j].equals("Hero") && maze[i][j].equals("Wall")))
-                    {
+            for (String[] strings : maze) {
+                for (int j = 0; j < maze.length; j++) {
+                    if (!(strings[j].equals("Hero") && strings[j].equals("Wall"))) {
                         Random random = new Random();
                         int x = random.nextInt(19); // 0 to 18
                         int y = random.nextInt(14);
                         power.xCoord = x;
                         power.yCoord = y;
-                        mazeList.get((x*18) + y).setType("Power");
+                        mazeList.get((x * 18) + y).setType("Power");
                     }
                 }
 

@@ -54,16 +54,37 @@ public class Hero {
         this.monstersRemain = monstersRemain;
     }
 
-    public void moveHero(String input) {
-        do {
-            switch (input) {
-                case "w" -> yCoord++;
-                case "a" -> xCoord--;
-                case "s" -> yCoord--;
-                case "d" -> xCoord++;
+    public void moveHero(String input, Maze mazeList) {
+        switch (input) {
+            case "w" -> {
+                yCoord++;
+                discover(mazeList);
             }
-        } while (true);
-
+            case "a" -> {
+                xCoord--;
+                discover(mazeList);
+            }
+            case "s" -> {
+                yCoord--;
+                discover(mazeList);
+            }
+            case "d" -> {
+                xCoord++;
+                discover(mazeList);
+            }
+        }
     }
 
+    public void discover(Maze mazeList)
+    {
+        mazeList.get((xCoord * 18) + yCoord).setRevealed(true); // hero spot
+        mazeList.get(((xCoord* 18) + yCoord)+1).setRevealed(true); // reveals right
+        mazeList.get((xCoord * 18) + yCoord+1).setRevealed(true); // reveals up
+        mazeList.get((xCoord * 18) + yCoord-1).setRevealed(true); // reveal down
+        mazeList.get(((xCoord * 18) + yCoord)-1).setRevealed(true); //reveal left
+        mazeList.get(((xCoord * 18) + yCoord+1)+1).setRevealed(true); // reveal top right
+        mazeList.get(((xCoord * 18) + yCoord-1)+1).setRevealed(true); // reveal down right
+        mazeList.get(((xCoord * 18) + yCoord-1)-1).setRevealed(true); //reveal down left
+        mazeList.get(((xCoord * 18) + yCoord+1)-1).setRevealed(true);//reveal top left
+    }
 }
