@@ -6,8 +6,14 @@
 //Email: lpa24@sfu.ca
 //ID: 301362079
 
-package cmpt213a2.model;
 
+package cmpt213a2.model;
+/**
+ * Hero class moves hero
+ * and discovers maze around it
+ * holds information on coordinates, powers
+ * and how many monsters remain
+ */
 
 public class Hero {
      public int numPowers;
@@ -55,8 +61,6 @@ public class Hero {
     }
 
     public static void moveHero(String input, Maze mazeList, Cell hero) {
-        System.out.println(hero.getyCoord());
-        System.out.println(hero.getxCoord());
         switch (input) {
             case "w" -> {
                 if (mazeList.get((hero.getyCoord()-1) * 20 + hero.getxCoord()).getType().equals("Wall")) {

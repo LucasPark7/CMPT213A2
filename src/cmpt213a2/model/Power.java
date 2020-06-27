@@ -1,5 +1,9 @@
 package cmpt213a2.model;
 
+/**
+ * Power class stores coordinates on the power
+ *
+ */
 public class Power {
     public int yCoord;
     public int xCoord;

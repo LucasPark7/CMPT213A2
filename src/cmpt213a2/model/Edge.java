@@ -6,9 +6,13 @@
 //Email: lpa24@sfu.ca
 //ID: 301362079
 
+
 package cmpt213a2.model;
 
-//Tracks edges of each cell for maze generation
+/**
+ * Edge class stores information on edges and directions
+ *
+ */
 public class Edge {
     private final int xCoord;
     private final int yCoord;

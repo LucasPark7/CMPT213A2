@@ -6,11 +6,14 @@
 //Email: lpa24@sfu.ca
 //ID: 301362079
 
+
 package cmpt213a2.ui;
 
 import cmpt213a2.model.Maze;
-
-//displays the maze to string
+/**
+ * DisplaysMaze class displays the maze, hero, monster, and power
+ *
+ */
 public class DisplayMaze {
     public static void displayMaze(Maze maze) {
         for (int i = 0; i < 15; i++) {

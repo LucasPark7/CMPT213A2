@@ -6,10 +6,15 @@
 //Email: lpa24@sfu.ca
 //ID: 301362079
 
+
 package cmpt213a2.model;
 
 import java.util.ArrayList;
-
+/**
+ * Maze class holds the maze information
+ * Data includes ArrayList of cells
+ * index, and size
+ */
 public class Maze {
     ArrayList<Cell> maze = new ArrayList<>();
 

@@ -13,6 +13,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ *Main class displays the maze and interface
+ *Checks if Hero and Power are in same spot
+ *Checks if Hero and Monster are in same spot
+ *Is able to display the revealed
+ * And activates the cheat code
+ */
 public class Main {
     private static Maze mazeList = new Maze();
     private static Power power;
@@ -162,7 +169,6 @@ public class Main {
 
     private static void heroPowerCheck(String[][] maze, Hero hero, int xCoord, int yCoord)
     {
-        System.out.println(yCoord * 20 + xCoord);
         if (mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).getType().equals("Power"))
         {
             hero.setNumPowers(hero.getNumPowers()+1);

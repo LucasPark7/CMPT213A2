@@ -7,6 +7,11 @@
 //ID: 301362079
 package cmpt213a2.model;
 
+/**
+ * Cell class holds information of the cells in the maze
+ * The cell type, coordinates and if it has been revealed
+ *
+ */
 public class Cell {
     private String type;
     private int xCoord;

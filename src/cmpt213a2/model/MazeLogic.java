@@ -11,7 +11,10 @@ package cmpt213a2.model;
 import java.util.ArrayList;
 import java.util.Random;
 
-//Holds methods for generating the maze
+/**
+ *MazeLogic class implements randomized Prim algorithm to generate the maze
+ */
+
 public class MazeLogic {
     private static final int cols = 18;
     private static final int rows = 13;
