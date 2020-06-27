@@ -55,6 +55,8 @@ public class Hero {
     }
 
     public static void moveHero(String input, Maze mazeList, Cell hero) {
+        System.out.println(hero.getyCoord());
+        System.out.println(hero.getxCoord());
         switch (input) {
             case "w" -> {
                 if (mazeList.get((hero.getyCoord()-1) * 20 + hero.getxCoord()).getType().equals("Wall")) {
@@ -87,10 +89,6 @@ public class Hero {
                 discover(mazeList, hero);
             }
             case "d" -> {
-                /*System.out.println(hero.getxCoord());
-                System.out.println(hero.getyCoord());
-                System.out.println(mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()+1).getType());
-                System.out.println(mazeList.get(hero.getxCoord()));*/
                 if (mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()+1).getType().equals("Wall")) {
                     System.out.println("Illegal Move");
                     break;

@@ -71,16 +71,16 @@ public class Main {
         //spawn power
 
         Random random = new Random();
-        int x = random.nextInt(18); // 0 to 18
-        int y = random.nextInt(13);
+        int x = random.nextInt(17)+1; // 1 to 18
+        int y = random.nextInt(12)+1;
         if(!(maze[x][y].equals("Hero") && maze[x][y].equals("Wall")))
         {
             power = new Power(x,y);
             mazeList.add(new Cell("Power", power.xCoord, power.yCoord, true));
-            mazeList.get((x*18)+y).setType("Power");
-            mazeList.get((x*18)+y).setxCoord(power.xCoord);
-            mazeList.get((x*18)+y).setyCoord(power.yCoord);
-            mazeList.get((x*18)+y).setRevealed(true);
+            mazeList.get((y*20)+x).setType("Power");
+            mazeList.get((y*20)+x).setxCoord(power.xCoord);
+            mazeList.get((y*20)+x).setyCoord(power.yCoord);
+            mazeList.get((y*20)+x).setRevealed(true);
         }
 
         displayHelp();
@@ -117,7 +117,7 @@ public class Main {
                 case "d":
                     Hero.moveHero(input, mazeList, mazeList.get(hero.getxCoord() * 20 + hero.getyCoord()));
 
-                    heroPowerCheck(maze, hero);
+                    heroPowerCheck(maze, hero, hero.getxCoord(), hero.getyCoord());
 
                     heroMonsterCheck(maze, hero, monsters);
 
@@ -161,14 +161,15 @@ public class Main {
         }
     }
 
-    private static void heroPowerCheck(String[][] maze, Hero hero)
+    private static void heroPowerCheck(String[][] maze, Hero hero, int xCoord, int yCoord)
     {
-        if ((hero.getyCoord() == power.yCoord) && (hero.getxCoord() == power.xCoord))
+        System.out.println(yCoord * 20 + xCoord);
+        if (mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).getType().equals("Power"))
         {
             hero.setNumPowers(hero.getNumPowers()+1);
             Random random = new Random();
-            int x = random.nextInt(18); // 0 to 18
-            int y = random.nextInt(13);
+            int x = random.nextInt(17) + 1; // 1 to 18
+            int y = random.nextInt(12) + 1;
             if(!(maze[x][y].equals("Hero") && maze[x][y].equals("Wall")))
             {
                 power = new Power(x,y);
