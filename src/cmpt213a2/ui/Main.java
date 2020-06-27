@@ -49,19 +49,19 @@ public class Main {
 
 
         ArrayList<Monster> monsters = new ArrayList<>(); // 0,13  18,13, 18,0
-        Monster m1 = new Monster(19,14, 2);
-        Monster m2 = new Monster(1,14, 1);
-        Monster m3 = new Monster(19,14, 1);
+        Monster m1 = new Monster(18,13, 2);
+        Monster m2 = new Monster(1,13, 1);
+        Monster m3 = new Monster(18,1, 1);
         monsters.add(m1);
         monsters.add(m2);
         monsters.add(m3);
         for(int i = 0; i < monsters.size(); i++)
         {
             mazeList.add(new Cell("Monster", monsters.get(i).getxCoord(), monsters.get(i).getyCoord(), true));
-            mazeList.get(i).setType("Monster");
-            mazeList.get(i).setRevealed(true);
-            mazeList.get(i).setxCoord(monsters.get(i).getxCoord());
-            mazeList.get(i).setyCoord(monsters.get(i).getyCoord());
+            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setType("Monster");
+            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setRevealed(true);
+            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setxCoord(monsters.get(i).getxCoord());
+            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setyCoord(monsters.get(i).getyCoord());
 
 
         }
@@ -105,10 +105,6 @@ public class Main {
                     break;
                 case "c":
                     numMonsters = 1;
-                    hero.setMonstersRemain(1);
-                    while(monsters.size() > 1) {
-                        monsters.remove(0);
-                    }
                     break;
                 case "m":
                     for (int i = 0; i < mazeList.size(); i++) {
@@ -130,6 +126,9 @@ public class Main {
                         monsters.get(i).moveMonster(mazeList, monsters.get(i).getLastMove());
                         heroMonsterCheck(maze, hero, monsters, gameDone);
                     }
+                    break;
+                default:
+                    System.out.println("Invalid Input");
                     break;
             }
         }while(!gameDone);
