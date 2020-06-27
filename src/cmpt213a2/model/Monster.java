@@ -62,6 +62,7 @@ public class Monster {
                         monster.setyCoord(monster.getyCoord() - 1);
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
                         mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setRevealed(true);
+                        lastMove = 2;
                         moved = true;
                         break;
                     }

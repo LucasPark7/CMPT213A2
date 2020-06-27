@@ -1,0 +1,6 @@
+﻿OOD Explained
+
+
+1. The hero’s movements will be implemented based on the input given by the user. If the hero is going to be walking into a wall, it would give a message saying “Invalid Input” and would ask for an input again. If there is no wall, it would move based on the given input. The hero would also reveal the cells around them in all 9 directions. OOD supports it using the single responsibility principle, as the Hero class only has methods relating to hero movement.
+ 
+2. The monster’s movements will be implemented with a pseudo-random movement using two switch cases. The first switch case will allow the monster to move in a random direction only if there is no wall in that direction. It will store the last move as well to prevent backtracking. The second switch case will check if the monster absolutely needs to backtrack checking if all new directions have walls in front of the monster. If so, the monster will go backtrack to its original location. This class is also supported by the OOD single responsibility principle, as its purpose is to move the monsters around the maze and nothing else.
