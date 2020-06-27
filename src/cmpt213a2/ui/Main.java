@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Main {
     private static Maze mazeList = new Maze();
     private static Power power;
+    private static boolean gameDone = false;
 
     public static void main(String[] args) {
 
@@ -67,7 +68,6 @@ public class Main {
         }
 
         int numMonsters = 3; // # monsters killed to win
-        boolean gameDone = false;
 
         //spawn power
 
@@ -119,12 +119,12 @@ public class Main {
 
                     heroPowerCheck(maze, hero);
 
-                    heroMonsterCheck(maze, hero, monsters, gameDone);
+                    heroMonsterCheck(maze, hero, monsters);
 
                     for(int i = 0; i < monsters.size(); i++)
                     {
                         monsters.get(i).moveMonster(mazeList, monsters.get(i).getLastMove());
-                        heroMonsterCheck(maze, hero, monsters, gameDone);
+                        heroMonsterCheck(maze, hero, monsters);
                     }
                     break;
                 default:
@@ -135,11 +135,11 @@ public class Main {
     }
 
 
-    private static void heroMonsterCheck(String[][] maze, Hero hero, ArrayList<Monster> monsters, boolean gameDone)
+    private static void heroMonsterCheck(String[][] maze, Hero hero, ArrayList<Monster> monsters)
     {
         for(int i = 0; i < monsters.size(); i++) // hero vs monster
         {
-            if((hero.getyCoord() == monsters.get(i).getxCoord()) && (hero.getxCoord() == monsters.get(i).getxCoord()))
+            if((hero.getyCoord() == monsters.get(i).getyCoord()) && (hero.getxCoord() == monsters.get(i).getxCoord()))
             {
                 if(hero.getNumPowers() > 0)
                 {
