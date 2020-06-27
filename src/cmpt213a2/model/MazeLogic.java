@@ -64,7 +64,11 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    maze[selectedWall.getxCoord()][selectedWall.getyCoord() - 1] = "Wall";
+                    if(maze[selectedWall.getxCoord()][selectedWall.getyCoord()-1] != "Hero")
+                    {
+                        maze[selectedWall.getxCoord()][selectedWall.getyCoord() - 1] = "Wall";
+                    }
+
                 }
             }
             if (selectedWall.getDirection().equals("West")) {
@@ -78,7 +82,11 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()] = "Wall";
+                    if(maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()] != "Hero")
+                    {
+                        maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()] = "Wall";
+                    }
+
                 }
             }
             if (selectedWall.getDirection().equals("East")) {
@@ -92,7 +100,11 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wallS
-                    maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()] = "Wall";
+                    if(maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()] != "Hero")
+                    {
+                        maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()] = "Wall";
+                    }
+
                 }
             }
             if (selectedWall.getDirection().equals("South")) {
@@ -106,7 +118,11 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1] = "Wall";
+                    if(maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1] != "Hero")
+                    {
+                        maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1] = "Wall";
+                    }
+
                 }
             }
             //remove edges
