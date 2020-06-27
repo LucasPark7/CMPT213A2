@@ -19,7 +19,7 @@ public class DisplayMaze {
                     System.out.print(".");
                 }
                 else {
-                    switch (maze.get((i * 18) + j).getType()) {
+                    switch (maze.get((i * 20) + j).getType()) {
                         case "Hero" -> System.out.print("@");
                         case "Wall" -> System.out.print("#");
                         case "Monster" -> System.out.print("!");

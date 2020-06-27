@@ -18,15 +18,6 @@ public class Main {
     private static Power power;
 
     public static void main(String[] args) {
-        Hero hero = new Hero(0, 1, 1, 3);
-
-        ArrayList<Monster> monsters = new ArrayList<>(); // 0,13  18,13, 18,0
-        Monster m1 = new Monster(1,14, 2);
-        Monster m2 = new Monster(19,14, 1);
-        Monster m3 = new Monster(19,1, 1);
-        monsters.add(m1);
-        monsters.add(m2);
-        monsters.add(m3);
 
         String[][] maze = MazeLogic.createMaze();
         // Build ArrayList Maze
@@ -49,30 +40,49 @@ public class Main {
         for (int k = 0; k < 20; k++) {
             mazeList.add(new Cell("Wall", k, 15, true));
         }
+        Hero hero = new Hero(0, 1, 1, 3);
+        mazeList.add(new Cell("Hero", hero.getxCoord(), hero.getyCoord(), true));
+        mazeList.get(21).setType("Hero");
+        mazeList.get(21).setyCoord(hero.getyCoord());
+        mazeList.get(21).setxCoord(hero.getxCoord());
+        mazeList.get(21).setRevealed(true);
+
+
+        ArrayList<Monster> monsters = new ArrayList<>(); // 0,13  18,13, 18,0
+        Monster m1 = new Monster(19,14, 2);
+        Monster m2 = new Monster(1,14, 1);
+        Monster m3 = new Monster(19,14, 1);
+        monsters.add(m1);
+        monsters.add(m2);
+        monsters.add(m3);
+        for(int i = 0; i < monsters.size(); i++)
+        {
+            mazeList.add(new Cell("Monster", monsters.get(i).getxCoord(), monsters.get(i).getyCoord(), true));
+            mazeList.get(i).setType("Monster");
+            mazeList.get(i).setRevealed(true);
+            mazeList.get(i).setxCoord(monsters.get(i).getxCoord());
+            mazeList.get(i).setyCoord(monsters.get(i).getyCoord());
+
+
+        }
 
         int numMonsters = 3; // # monsters killed to win
         boolean gameDone = false;
 
         //spawn power
-        for(int i = 0; i < 18; i++)
+
+        Random random = new Random();
+        int x = random.nextInt(18); // 0 to 18
+        int y = random.nextInt(13);
+        if(!(maze[x][y].equals("Hero") && maze[x][y].equals("Wall")))
         {
-            for(int j = 0; j < 13; j++)
-            {
-                if(!(maze[i][j].equals("Hero") && maze[i][j].equals("Wall")))
-                {
-                    Random random = new Random();
-                    int x = random.nextInt(19) + 1; // 0 to 18
-                    int y = random.nextInt(14) + 1;
-                    power = new Power(x,y);
-                    mazeList.get(x*y).setType("Power");
-                }
-            }
+            power = new Power(x,y);
+            mazeList.add(new Cell("Power", power.xCoord, power.yCoord, true));
+            mazeList.get((x*20)+y).setType("Power");
+            mazeList.get((x*20)+y).setxCoord(power.xCoord);
+            mazeList.get((x*20)+y).setyCoord(power.yCoord);
+            mazeList.get((x*20)+y).setRevealed(true);
         }
-        //spawn hero and monsters
-        mazeList.get(21).setType("Hero");
-        mazeList.get(39).setType("Monster");
-        mazeList.get(261).setType("Monster");
-        mazeList.get(279).setType("Monster");
 
         displayHelp();
 
