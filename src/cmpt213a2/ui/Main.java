@@ -25,21 +25,20 @@ public class Main {
         monsters.add(m2);
         monsters.add(m3);
 
-
         String[][] maze = MazeLogic.createMaze();
 
         int numMonsters = 3; // # monsters killed to win
         boolean gameDone = false;
 
-        for(int i = 0; i < maze.length; i++)
+        for(int i = 0; i < 18; i++)
         {
-            for(int j = 0; j < maze.length; j++)
+            for(int j = 0; j < 13; j++)
             {
                 if(maze[i][j].equals("Hero") || maze[i][j].equals("Wall"))
                 {
                     Random random = new Random();
-                    int x = random.nextInt(19); // 0 to 18
-                    int y = random.nextInt(14);
+                    int x = random.nextInt(18); // 0 to 18
+                    int y = random.nextInt(13);
                     Power.xCoord = x;
                     Power.yCoord = y;
                 }

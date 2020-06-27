@@ -8,6 +8,8 @@
 
 package cmpt213a2.model;
 
+import cmpt213a2.ui.DisplayMaze;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -34,7 +36,6 @@ public class MazeLogic {
     private static void generateMaze() {
         Random random = new Random();
         ArrayList<Edge> edgeList = new ArrayList<>();
-        String[][] walls;
 
         //add edges of initial wall
         int initialCellX = random.nextInt(18);
@@ -45,8 +46,12 @@ public class MazeLogic {
 
         //implement Prim's algorithm
         while (edgeList.size() > 0) {
+            DisplayMaze.displayMaze(maze);
+
             //get random edge
             Edge selectedWall = edgeList.get(random.nextInt(edgeList.size()));
+            System.out.println(selectedWall.getDirection());
+            maze[selectedWall.getxCoord()][selectedWall.getyCoord()] = "Hero";
 
             if (selectedWall.getDirection().equals("North")) {
 
@@ -57,8 +62,10 @@ public class MazeLogic {
                     //add new edges to edge list
                     addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()-1);
                 }
-                //if another edge connects to cell then it becomes a wall
-                maze[selectedWall.getxCoord()][selectedWall.getyCoord()-1] = "Wall";
+                else {
+                    //if another edge connects to cell then it becomes a wall
+                    maze[selectedWall.getxCoord()][selectedWall.getyCoord() - 1] = "Wall";
+                }
             }
             if (selectedWall.getDirection().equals("West")) {
 
@@ -69,8 +76,10 @@ public class MazeLogic {
                     //add new edges to edge list
                     addEdges(edgeList, selectedWall.getxCoord()-1,selectedWall.getyCoord());
                 }
-                //if another edge connects to cell then it becomes a wall
-                maze[selectedWall.getxCoord()-1][selectedWall.getyCoord()] = "Wall";
+                else {
+                    //if another edge connects to cell then it becomes a wall
+                    maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()] = "Wall";
+                }
             }
             if (selectedWall.getDirection().equals("East")) {
 
@@ -81,8 +90,10 @@ public class MazeLogic {
                     //add new edges to edge list
                     addEdges(edgeList, selectedWall.getxCoord()+1,selectedWall.getyCoord());
                 }
-                //if another edge connects to cell then it becomes a wallS
-                maze[selectedWall.getxCoord()+1][selectedWall.getyCoord()] = "Wall";
+                else {
+                    //if another edge connects to cell then it becomes a wallS
+                    maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()] = "Wall";
+                }
             }
             if (selectedWall.getDirection().equals("South")) {
 
@@ -93,16 +104,18 @@ public class MazeLogic {
                     //add new edges to edge list
                     addEdges(edgeList, selectedWall.getxCoord(),selectedWall.getyCoord()+1);
                 }
-                //if another edge connects to cell then it becomes a wall
-                maze[selectedWall.getxCoord()][selectedWall.getyCoord()+1] = "Wall";
+                else {
+                    //if another edge connects to cell then it becomes a wall
+                    maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1] = "Wall";
+                }
             }
             //remove edges
             removeEdge(edgeList, selectedWall);
         }
-        for (String[] cellArray : maze) {
-            for (String cell : cellArray) {
-                if (!(cell.equals("Wall"))) {
-                    cell = "Empty";
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                if (!(maze[i][j].equals("Wall"))) {
+                    maze[i][j] = "Empty";
                 }
             }
         }
@@ -114,89 +127,136 @@ public class MazeLogic {
             if (yCoord == 0) {
                 edgeList.add(new Edge( xCoord, yCoord, "East"));
                 //"mark" next cell so we know which cells have edges added
-                maze[xCoord+1][yCoord] = "East";
+                if (maze[xCoord+1][yCoord].equals("Temp")) {
+                    maze[xCoord+1][yCoord] = "East";
+                }
 
                 edgeList.add(new Edge( xCoord, yCoord, "South"));
-
                 //"mark" next cell so we know which cells have edges added
-                maze[xCoord][yCoord+1] = "South";
+                if (maze[xCoord][yCoord+1].equals("Temp")) {
+                    maze[xCoord][yCoord+1] = "South";
+                }
             }
-            else if (yCoord == 13) {
+            else if (yCoord == 12) {
                 edgeList.add(new Edge( xCoord, yCoord, "North"));
-                maze[xCoord][yCoord-1] = "North";
+                if (maze[xCoord][yCoord-1].equals("Temp")) {
+                    maze[xCoord][yCoord-1] = "North";
+                }
 
                 edgeList.add(new Edge( xCoord, yCoord, "East"));
-                maze[xCoord+1][yCoord] = "East";
+                if (maze[xCoord+1][yCoord].equals("Temp")) {
+                    maze[xCoord+1][yCoord] = "East";
+                }
             }
             else {
                 edgeList.add(new Edge( xCoord, yCoord, "East"));
-                maze[xCoord+1][yCoord] = "East";
+                if (maze[xCoord+1][yCoord].equals("Temp")) {
+                    maze[xCoord+1][yCoord] = "East";
+                }
 
                 edgeList.add(new Edge( xCoord, yCoord, "North"));
-                maze[xCoord][yCoord-1] = "North";
+                if (maze[xCoord][yCoord-1].equals("Temp")) {
+                    maze[xCoord][yCoord-1] = "North";
+                }
 
                 edgeList.add(new Edge( xCoord, yCoord, "South"));
-                maze[xCoord][yCoord+1] = "South";
+                if (maze[xCoord][yCoord+1].equals("Temp")) {
+                    maze[xCoord][yCoord+1] = "South";
+                }
             }
         }
-        else if (xCoord == 18) { //add edges of each cell on 18 x-axis
+        else if (xCoord == 17) { //add edges of each cell on 18 x-axis
             if (yCoord == 0) {
                 edgeList.add(new Edge( xCoord, yCoord, "West"));
-                maze[xCoord-1][yCoord] = "West";
+                if (maze[xCoord-1][yCoord].equals("Temp")) {
+                    maze[xCoord-1][yCoord] = "West";
+                }
 
                 edgeList.add(new Edge( xCoord, yCoord, "South"));
-                maze[xCoord][yCoord+1] = "South";
+                if (maze[xCoord][yCoord+1].equals("Temp")) {
+                    maze[xCoord][yCoord+1] = "South";
+                }
             }
-            else if (yCoord == 13) {
+            else if (yCoord == 12) {
                 edgeList.add(new Edge(xCoord, yCoord, "North"));
-                maze[xCoord][yCoord-1] = "North";
+                if (maze[xCoord][yCoord-1].equals("Temp")) {
+                    maze[xCoord][yCoord-1] = "North";
+                }
 
                 edgeList.add(new Edge(xCoord, yCoord, "West"));
-                maze[xCoord-1][yCoord] = "West";
+                if (maze[xCoord-1][yCoord].equals("Temp")) {
+                    maze[xCoord-1][yCoord] = "West";
+                }
             }
             else {
                 edgeList.add(new Edge(xCoord, yCoord, "West"));
-                maze[xCoord-1][yCoord] = "West";
+                if (maze[xCoord-1][yCoord].equals("Temp")) {
+                    maze[xCoord-1][yCoord] = "West";
+                }
 
                 edgeList.add(new Edge(xCoord, yCoord, "North"));
-                maze[xCoord][yCoord-1] = "North";
+                if (maze[xCoord][yCoord-1].equals("Temp")) {
+                    maze[xCoord][yCoord-1] = "North";
+                }
 
                 edgeList.add(new Edge(xCoord, yCoord, "South"));
-                maze[xCoord][yCoord+1] = "South";
+                if (maze[xCoord][yCoord+1].equals("Temp")) {
+                    maze[xCoord][yCoord+1] = "South";
+                }
             }
         }
         else if (yCoord == 0) { //add edges of each cell on 0 y-axis
             edgeList.add(new Edge(xCoord, yCoord, "East"));
-            maze[xCoord+1][yCoord] = "East";
+            if (maze[xCoord+1][yCoord].equals("Temp")) {
+                maze[xCoord+1][yCoord] = "East";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "West"));
-            maze[xCoord-1][yCoord] = "West";
+            if (maze[xCoord-1][yCoord].equals("Temp")) {
+                maze[xCoord-1][yCoord] = "West";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "South"));
-            maze[xCoord][yCoord+1] = "South";
+            if (maze[xCoord][yCoord+1].equals("Temp")) {
+                maze[xCoord][yCoord+1] = "South";
+            }
         }
-        else if (yCoord == 13) { //add edges of each cell on 13 y-axis
+        else if (yCoord == 12) { //add edges of each cell on 13 y-axis
             edgeList.add(new Edge(xCoord, yCoord, "East"));
-            maze[xCoord+1][yCoord] = "East";
+            if (maze[xCoord+1][yCoord].equals("Temp")) {
+                maze[xCoord+1][yCoord] = "East";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "West"));
-            maze[xCoord-1][yCoord] = "West";
+            if (maze[xCoord-1][yCoord].equals("Temp")) {
+                maze[xCoord-1][yCoord] = "West";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "North"));
-            maze[xCoord][yCoord-1] = "North";
+            if (maze[xCoord][yCoord-1].equals("Temp")) {
+                maze[xCoord][yCoord-1] = "North";
+            }
         }
         else { //any non-edge case
             edgeList.add(new Edge(xCoord, yCoord, "East"));
-            maze[xCoord+1][yCoord] = "East";
+            if (maze[xCoord+1][yCoord].equals("Temp")) {
+                maze[xCoord+1][yCoord] = "East";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "West"));
-            maze[xCoord-1][yCoord] = "West";
+            if (maze[xCoord-1][yCoord].equals("Temp")) {
+                maze[xCoord-1][yCoord] = "West";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "North"));
-            maze[xCoord][yCoord-1] = "North";
+            if (maze[xCoord][yCoord-1].equals("Temp")) {
+                maze[xCoord][yCoord-1] = "North";
+            }
 
             edgeList.add(new Edge(xCoord, yCoord, "South"));
-            maze[xCoord][yCoord+1] = "South";
+            if (maze[xCoord][yCoord+1].equals("Temp")) {
+                maze[xCoord][yCoord+1] = "South";
+            }
         }
     }
 

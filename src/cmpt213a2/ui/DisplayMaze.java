@@ -15,22 +15,25 @@ public class DisplayMaze {
     public static void displayMaze(String[][] maze) {
         System.out.println("####################");
         for (int i = 0; i < 13; i++) {
-            System.out.println("#");
-            for (int j = 0; j < 19; j++) {
-                if(maze[j-1][i] == "Hero") {
-                    System.out.println("@");
+            System.out.print("#");
+            for (int j = 0; j < 18; j++) {
+                if(maze[j][i].equals("Hero")) {
+                    System.out.print("@");
                 }
-                else if(maze[j-1][i] == "Monster") {
-                    System.out.println("!");
+                else if(maze[j][i].equals("Wall")) {
+                    System.out.print("#");
                 }
-                else if(maze[j-1][i] == "Power") {
-                    System.out.println("$");
+                else if(maze[j][i].equals("Monster")) {
+                    System.out.print("!");
                 }
-                else if(maze[j-1][i] == "Hidden") {
-                    System.out.println(".");
+                else if(maze[j][i].equals("Power")) {
+                    System.out.print("$");
+                }
+                else if(maze[j][i].equals("Hidden")) {
+                    System.out.print(".");
                 }
                 else {
-                    System.out.println(" ");
+                    System.out.print(" ");
                 }
             }
             System.out.println("#");
