@@ -13,11 +13,9 @@ import cmpt213a2.model.Maze;
 //displays the maze to string
 public class DisplayMaze {
     public static void displayMaze(Maze maze) {
-        System.out.println("####################");
-        for (int i = 0; i < 13; i++) {
-            System.out.print("#");
-            for (int j = 0; j < 18; j++) {
-                if (!(maze.get((i*18) + j).isRevealed())) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 20; j++) {
+                if (!(maze.get((i*20) + j).isRevealed())) {
                     System.out.print(".");
                 }
                 else {
@@ -30,8 +28,6 @@ public class DisplayMaze {
                     }
                 }
             }
-            System.out.println("#");
         }
-        System.out.println("####################");
     }
 }

@@ -18,27 +18,36 @@ public class Main {
     private static Power power;
 
     public static void main(String[] args) {
-        Hero hero = new Hero(0, 0, 0, 3);
+        Hero hero = new Hero(0, 1, 1, 3);
 
         ArrayList<Monster> monsters = new ArrayList<>(); // 0,13  18,13, 18,0
-        Monster m1 = new Monster(0,13);
-        Monster m2 = new Monster(18,13);
-        Monster m3 = new Monster(18,0);
+        Monster m1 = new Monster(1,14, 2);
+        Monster m2 = new Monster(19,14, 1);
+        Monster m3 = new Monster(19,1, 1);
         monsters.add(m1);
         monsters.add(m2);
         monsters.add(m3);
 
         String[][] maze = MazeLogic.createMaze();
         // Build ArrayList Maze
-        for (int i = 0; i < 18; i++) {
-            for (int j = 0; j < 13; j++) {
-                if (maze[i][j].equals("Wall")) {
-                    mazeList.add(new Cell( "Wall", i, j, false));
+        for (int k = 0; k < 20; k++) {
+            mazeList.add(new Cell("Wall", k, 0, true));
+        }
+        for (int i = 0; i < 13; i++) {
+
+            mazeList.add(new Cell("Wall", 0, i+1, true));
+            for (int j = 0; j < 18; j++) {
+                if (maze[j][i].equals("Wall")) {
+                    mazeList.add(new Cell( "Wall", j+1, i+1, false));
                 }
                 else {
-                    mazeList.add(new Cell("Empty", i, j, false));
+                    mazeList.add(new Cell("Empty", j+1, i+1, false));
                 }
             }
+            mazeList.add(new Cell("Wall", 20, i+1, true));
+        }
+        for (int k = 0; k < 20; k++) {
+            mazeList.add(new Cell("Wall", k, 15, true));
         }
 
         int numMonsters = 3; // # monsters killed to win
@@ -52,18 +61,18 @@ public class Main {
                 if(!(maze[i][j].equals("Hero") && maze[i][j].equals("Wall")))
                 {
                     Random random = new Random();
-                    int x = random.nextInt(19); // 0 to 18
-                    int y = random.nextInt(14);
+                    int x = random.nextInt(19) + 1; // 0 to 18
+                    int y = random.nextInt(14) + 1;
                     power = new Power(x,y);
                     mazeList.get(x*y).setType("Power");
                 }
             }
         }
         //spawn hero and monsters
-        mazeList.get(0).setType("Hero");
-        mazeList.get(17).setType("Monster");
-        mazeList.get(216).setType("Monster");
-        mazeList.get(233).setType("Monster");
+        mazeList.get(21).setType("Hero");
+        mazeList.get(39).setType("Monster");
+        mazeList.get(261).setType("Monster");
+        mazeList.get(279).setType("Monster");
 
         displayHelp();
 
@@ -108,7 +117,7 @@ public class Main {
 
                     for(int i = 0; i < monsters.size(); i++)
                     {
-                        monsters.get(i).moveMonster();
+                        monsters.get(i).moveMonster(mazeList, monsters.get(i).getLastMove());
                         heroMonsterCheck(maze, hero, monsters, gameDone);
                     }
                     break;
@@ -152,8 +161,8 @@ public class Main {
                 for (int j = 0; j < maze.length; j++) {
                     if (!(strings[j].equals("Hero") && strings[j].equals("Wall"))) {
                         Random random = new Random();
-                        int x = random.nextInt(19); // 0 to 18
-                        int y = random.nextInt(14);
+                        int x = random.nextInt(19) + 1; // 0 to 18
+                        int y = random.nextInt(14) + 1;
                         power.xCoord = x;
                         power.yCoord = y;
                         mazeList.get((x * 18) + y).setType("Power");
