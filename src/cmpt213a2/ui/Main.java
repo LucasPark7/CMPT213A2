@@ -56,13 +56,12 @@ public class Main {
         monsters.add(m1);
         monsters.add(m2);
         monsters.add(m3);
-        for(int i = 0; i < monsters.size(); i++)
-        {
-            mazeList.add(new Cell("Monster", monsters.get(i).getxCoord(), monsters.get(i).getyCoord(), true));
-            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setType("Monster");
-            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setRevealed(true);
-            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setxCoord(monsters.get(i).getxCoord());
-            mazeList.get(monsters.get(i).getyCoord()*20 + monsters.get(i).getxCoord()).setyCoord(monsters.get(i).getyCoord());
+        for (Monster monster : monsters) {
+            mazeList.add(new Cell("Monster", monster.getxCoord(), monster.getyCoord(), true));
+            mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setType("Monster");
+            mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setRevealed(true);
+            mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setxCoord(monster.getxCoord());
+            mazeList.get(monster.getyCoord() * 20 + monster.getxCoord()).setyCoord(monster.getyCoord());
 
 
         }
@@ -165,19 +164,18 @@ public class Main {
     {
         if ((hero.getyCoord() == power.yCoord) && (hero.getxCoord() == power.xCoord))
         {
-            hero.setNumPowers(hero.numPowers++);
-            for (String[] strings : maze) {
-                for (int j = 0; j < maze.length; j++) {
-                    if (!(strings[j].equals("Hero") && strings[j].equals("Wall"))) {
-                        Random random = new Random();
-                        int x = random.nextInt(18); // 0 to 18
-                        int y = random.nextInt(13);
-                        power.xCoord = x;
-                        power.yCoord = y;
-                        mazeList.get((x * 18) + y).setType("Power");
-                    }
-                }
-
+            hero.setNumPowers(hero.getNumPowers()+1);
+            Random random = new Random();
+            int x = random.nextInt(18); // 0 to 18
+            int y = random.nextInt(13);
+            if(!(maze[x][y].equals("Hero") && maze[x][y].equals("Wall")))
+            {
+                power = new Power(x,y);
+                mazeList.add(new Cell("Power", power.xCoord, power.yCoord, true));
+                mazeList.get((x*18)+y).setType("Power");
+                mazeList.get((x*18)+y).setxCoord(power.xCoord);
+                mazeList.get((x*18)+y).setyCoord(power.yCoord);
+                mazeList.get((x*18)+y).setRevealed(true);
             }
         }
     }
