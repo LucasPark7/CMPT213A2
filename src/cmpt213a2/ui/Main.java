@@ -44,7 +44,7 @@ public class Main {
                     Power.yCoord = y;
                 }
             }
-            }
+        }
 
         displayHelp();
 
