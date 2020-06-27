@@ -15,7 +15,7 @@ public class Cell {
     private boolean checked;
     private final int index;
 
-    public Cell(String type, int xCoord, int yCoord, boolean revealed, boolean checked, int index) {
+    public Cell(String type, int xCoord, int yCoord, boolean revealed, int index) {
         this.type = type;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
