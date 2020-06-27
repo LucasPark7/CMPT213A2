@@ -84,6 +84,7 @@ public class Main {
         }
 
         displayHelp();
+        Hero.discover(mazeList, mazeList.get(21));
 
 
 
@@ -114,7 +115,7 @@ public class Main {
                 case "a":
                 case "s":
                 case "d":
-                    hero.moveHero(input, mazeList);
+                    Hero.moveHero(input, mazeList, mazeList.get(hero.getxCoord() * 20 + hero.getyCoord()));
 
                     heroPowerCheck(maze, hero);
 
