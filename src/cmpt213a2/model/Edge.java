@@ -10,9 +10,9 @@ package cmpt213a2.model;
 
 //Tracks edges of each cell for maze generation
 public class Edge {
-    private int xCoord;
-    private int yCoord;
-    private String direction;
+    private final int xCoord;
+    private final int yCoord;
+    private final String direction;
 
     public Edge(int xCoord, int yCoord, String direction) {
         this.xCoord = xCoord;

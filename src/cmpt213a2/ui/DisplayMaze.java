@@ -12,28 +12,22 @@ import cmpt213a2.model.Maze;
 
 //displays the maze to string
 public class DisplayMaze {
-    public static void displayMaze(String[][] maze) {
+    public static void displayMaze(Maze maze) {
         System.out.println("####################");
         for (int i = 0; i < 13; i++) {
             System.out.print("#");
             for (int j = 0; j < 18; j++) {
-                if(maze[j][i].equals("Hero")) {
-                    System.out.print("@");
-                }
-                else if(maze[j][i].equals("Wall")) {
-                    System.out.print("#");
-                }
-                else if(maze[j][i].equals("Monster")) {
-                    System.out.print("!");
-                }
-                else if(maze[j][i].equals("Power")) {
-                    System.out.print("$");
-                }
-                else if(maze[j][i].equals("Hidden")) {
+                if (!(maze.get((i*18) + j).isRevealed())) {
                     System.out.print(".");
                 }
                 else {
-                    System.out.print(" ");
+                    switch (maze.get((i * 18) + j).getType()) {
+                        case "Hero" -> System.out.print("@");
+                        case "Wall" -> System.out.print("#");
+                        case "Monster" -> System.out.print("!");
+                        case "Power" -> System.out.print("$");
+                        case "Empty" -> System.out.print(" ");
+                    }
                 }
             }
             System.out.println("#");

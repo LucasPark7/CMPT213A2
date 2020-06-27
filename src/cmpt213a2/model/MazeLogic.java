@@ -8,8 +8,6 @@
 
 package cmpt213a2.model;
 
-import cmpt213a2.ui.DisplayMaze;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,7 +15,7 @@ import java.util.Random;
 public class MazeLogic {
     private static final int cols = 18;
     private static final int rows = 13;
-    private static String[][] maze = new String[cols][rows];
+    private static final String[][] maze = new String[cols][rows];
 
     public static String[][] createMaze(){
         //creates 18x13 2D array
@@ -62,7 +60,7 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    if(!maze[selectedWall.getxCoord()][selectedWall.getyCoord()-1].equals("Empty"))
+                    if(!(maze[selectedWall.getxCoord()][selectedWall.getyCoord()-1].equals("Empty")))
                     {
                         maze[selectedWall.getxCoord()][selectedWall.getyCoord() - 1] = "Wall";
                     }
@@ -80,7 +78,7 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    if(!maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()].equals("Empty"));
+                    if(!(maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()].equals("Empty")))
                     {
                         maze[selectedWall.getxCoord() - 1][selectedWall.getyCoord()] = "Wall";
                     }
@@ -98,7 +96,7 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wallS
-                    if(!maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()].equals("Hero"));
+                    if(!(maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()].equals("Empty")))
                     {
                         maze[selectedWall.getxCoord() + 1][selectedWall.getyCoord()] = "Wall";
                     }
@@ -116,7 +114,7 @@ public class MazeLogic {
                 }
                 else {
                     //if another edge connects to cell then it becomes a wall
-                    if(!maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1].equals("Empty"))
+                    if(!(maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1].equals("Empty")))
                     {
                         maze[selectedWall.getxCoord()][selectedWall.getyCoord() + 1] = "Wall";
                     }

@@ -12,15 +12,12 @@ public class Cell {
     private int xCoord;
     private int yCoord;
     private boolean revealed;
-    private boolean checked;
-    private final int index;
 
-    public Cell(String type, int xCoord, int yCoord, boolean revealed, int index) {
+    public Cell(String type, int xCoord, int yCoord, boolean revealed) {
         this.type = type;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.revealed = revealed;
-        this.index = index;
     }
 
     public String getType() {
@@ -53,18 +50,6 @@ public class Cell {
 
     public void setRevealed(boolean revealed) {
         this.revealed = revealed;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
-    public int getIndex() {
-        return index;
     }
 }
 
