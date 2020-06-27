@@ -57,18 +57,34 @@ public class Hero {
     public void moveHero(String input, Maze mazeList) {
         switch (input) {
             case "w" -> {
+                if (mazeList.get(yCoord + 1).getType().equals("Wall")) {
+                    System.out.println("Illegal Move");
+                    break;
+                }
                 yCoord++;
                 discover(mazeList);
             }
             case "a" -> {
+                if (mazeList.get(xCoord - 1).getType().equals("Wall")) {
+                    System.out.println("Illegal Move");
+                    break;
+                }
                 xCoord--;
                 discover(mazeList);
             }
             case "s" -> {
+                if (mazeList.get(yCoord - 1).getType().equals("Wall")) {
+                    System.out.println("Illegal Move");
+                    break;
+                }
                 yCoord--;
                 discover(mazeList);
             }
             case "d" -> {
+                if (mazeList.get(xCoord + 1).getType().equals("Wall")) {
+                    System.out.println("Illegal Move");
+                    break;
+                }
                 xCoord++;
                 discover(mazeList);
             }
@@ -87,4 +103,6 @@ public class Hero {
         mazeList.get(((xCoord * 18) + yCoord-1)-1).setRevealed(true); //reveal down left
         mazeList.get(((xCoord * 18) + yCoord+1)-1).setRevealed(true);//reveal top left
     }
+
+
 }

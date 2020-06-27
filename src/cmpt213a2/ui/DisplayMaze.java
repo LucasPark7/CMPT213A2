@@ -28,6 +28,7 @@ public class DisplayMaze {
                     }
                 }
             }
+            System.out.println("");
         }
     }
 }
