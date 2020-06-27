@@ -54,54 +54,66 @@ public class Hero {
         this.monstersRemain = monstersRemain;
     }
 
-    public void moveHero(String input, Maze mazeList) {
+    public static void moveHero(String input, Maze mazeList, Cell hero) {
         switch (input) {
             case "w" -> {
-                if (mazeList.get(yCoord - 1).getType().equals("Wall")) {
+                if (mazeList.get((hero.getyCoord()-1) * 20 + hero.getxCoord()).getType().equals("Wall")) {
                     System.out.println("Illegal Move");
                     break;
                 }
-                yCoord--;
-                discover(mazeList);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
+                hero.setyCoord(hero.getyCoord()-1);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                discover(mazeList, hero);
             }
             case "a" -> {
-                if (mazeList.get(xCoord - 1).getType().equals("Wall")) {
+                if (mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()-1).getType().equals("Wall")) {
                     System.out.println("Illegal Move");
                     break;
                 }
-                xCoord--;
-                discover(mazeList);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
+                hero.setxCoord(hero.getxCoord()-1);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                discover(mazeList, hero);
             }
             case "s" -> {
-                if (mazeList.get(yCoord + 1).getType().equals("Wall")) {
+                if (mazeList.get((hero.getyCoord()+1) * 20 + hero.getxCoord()).getType().equals("Wall")) {
                     System.out.println("Illegal Move");
                     break;
                 }
-                yCoord++;
-                discover(mazeList);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
+                hero.setyCoord(hero.getyCoord()+1);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                discover(mazeList, hero);
             }
             case "d" -> {
-                if (mazeList.get(xCoord + 1).getType().equals("Wall")) {
+                /*System.out.println(hero.getxCoord());
+                System.out.println(hero.getyCoord());
+                System.out.println(mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()+1).getType());
+                System.out.println(mazeList.get(hero.getxCoord()));*/
+                if (mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()+1).getType().equals("Wall")) {
                     System.out.println("Illegal Move");
                     break;
                 }
-                xCoord++;
-                discover(mazeList);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Empty");
+                hero.setxCoord(hero.getxCoord()+1);
+                mazeList.get(hero.getyCoord() * 20 + hero.getxCoord()).setType("Hero");
+                discover(mazeList, hero);
             }
         }
     }
 
-    public void discover(Maze mazeList)
+    public static void discover(Maze mazeList, Cell hero)
     {
-        mazeList.get((xCoord * 18) + yCoord).setRevealed(true); // hero spot
-        mazeList.get(((xCoord* 18) + yCoord)+1).setRevealed(true); // reveals right
-        mazeList.get((xCoord * 18) + yCoord+1).setRevealed(true); // reveals up
-        mazeList.get((xCoord * 18) + yCoord-1).setRevealed(true); // reveal down
-        mazeList.get(((xCoord * 18) + yCoord)-1).setRevealed(true); //reveal left
-        mazeList.get(((xCoord * 18) + yCoord+1)+1).setRevealed(true); // reveal top right
-        mazeList.get(((xCoord * 18) + yCoord-1)+1).setRevealed(true); // reveal down right
-        mazeList.get(((xCoord * 18) + yCoord-1)-1).setRevealed(true); //reveal down left
-        mazeList.get(((xCoord * 18) + yCoord+1)-1).setRevealed(true);//reveal top left
+        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord()   ).setRevealed(true); // hero spot
+        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord() +1).setRevealed(true); // reveals right
+        mazeList.get(((hero.getyCoord()+1)  * 20) + hero.getxCoord()   ).setRevealed(true); // reveals up
+        mazeList.get(((hero.getyCoord()-1)  * 20) + hero.getxCoord() -1).setRevealed(true); // reveal down
+        mazeList.get((hero.getyCoord()      * 20) + hero.getxCoord() -1).setRevealed(true); //reveal left
+        mazeList.get(((hero.getyCoord()+1) * 20) + hero.getxCoord()  +1).setRevealed(true); // reveal top right
+        mazeList.get(((hero.getyCoord()-1) * 20) + hero.getxCoord()  +1).setRevealed(true); // reveal down right
+        mazeList.get(((hero.getyCoord()-1)  * 20) + hero.getxCoord() -1).setRevealed(true); //reveal down left
+        mazeList.get(((hero.getyCoord()+1)  * 20) + hero.getxCoord() -1).setRevealed(true);//reveal top left
     }
 
 

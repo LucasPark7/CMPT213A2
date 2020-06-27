@@ -78,13 +78,14 @@ public class Main {
         {
             power = new Power(x,y);
             mazeList.add(new Cell("Power", power.xCoord, power.yCoord, true));
-            mazeList.get((x*20)+y).setType("Power");
-            mazeList.get((x*20)+y).setxCoord(power.xCoord);
-            mazeList.get((x*20)+y).setyCoord(power.yCoord);
-            mazeList.get((x*20)+y).setRevealed(true);
+            mazeList.get((x*18)+y).setType("Power");
+            mazeList.get((x*18)+y).setxCoord(power.xCoord);
+            mazeList.get((x*18)+y).setyCoord(power.yCoord);
+            mazeList.get((x*18)+y).setRevealed(true);
         }
 
         displayHelp();
+        Hero.discover(mazeList, mazeList.get(21));
 
 
 
@@ -115,7 +116,7 @@ public class Main {
                 case "a":
                 case "s":
                 case "d":
-                    hero.moveHero(input, mazeList);
+                    Hero.moveHero(input, mazeList, mazeList.get(hero.getxCoord() * 20 + hero.getyCoord()));
 
                     heroPowerCheck(maze, hero);
 
