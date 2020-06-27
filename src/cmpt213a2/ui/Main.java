@@ -14,6 +14,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    private static Maze mazeList;
+    private static Power power;
+
     public static void main(String[] args) {
         Hero hero = new Hero(0, 0, 0, 3);
 
@@ -26,24 +29,42 @@ public class Main {
         monsters.add(m3);
 
         String[][] maze = MazeLogic.createMaze();
+        // Build ArrayList Maze
+        for (int i = 0; i < 18; i++) {
+            for (int j = 0; j < 13; j++) {
+                if (maze[i][j].equals("Wall")) {
+                    mazeList.add(new Cell( "Wall", i, j, false));
+                }
+                else {
+                    mazeList.add(new Cell("Empty", i, j, false));
+                }
+            }
+        }
 
         int numMonsters = 3; // # monsters killed to win
         boolean gameDone = false;
 
+        //spawn power
         for(int i = 0; i < 18; i++)
         {
             for(int j = 0; j < 13; j++)
             {
-                if(maze[i][j].equals("Hero") || maze[i][j].equals("Wall"))
+                if(!(maze[i][j].equals("Hero") && maze[i][j].equals("Wall")))
                 {
                     Random random = new Random();
-                    int x = random.nextInt(18); // 0 to 18
-                    int y = random.nextInt(13);
-                    Power.xCoord = x;
-                    Power.yCoord = y;
+                    int x = random.nextInt(19); // 0 to 18
+                    int y = random.nextInt(14);
+                    power.xCoord = x;
+                    power.yCoord = y;
+                    mazeList.get((x*18) + y).setType("Power");
                 }
             }
         }
+        //spawn hero and monsters
+        mazeList.get(0).setType("Hero");
+        mazeList.get(17).setType("Monster");
+        mazeList.get(216).setType("Monster");
+        mazeList.get(233).setType("Monster");
 
         displayHelp();
 
@@ -51,7 +72,7 @@ public class Main {
 
         while (!(gameDone)) {
             System.out.println("Maze:");
-            DisplayMaze.displayMaze(maze);
+            DisplayMaze.displayMaze(mazeList);
 
             System.out.println("Total number of monsters to be killed: " + numMonsters);
             System.out.println("Number of Powers currently in possession: " + hero.getNumPowers());
@@ -64,22 +85,16 @@ public class Main {
                 case "?":
                     displayHelp();
                     break;
-                default:
-                    gameDone = true;
-                    break;
                 case "c":
                     numMonsters = 1;
+                    hero.setMonstersRemain(1);
+                    while(monsters.size() > 1) {
+                        monsters.remove(0);
+                    }
                     break;
                 case "m":
-                    for(int i = 0; i < maze.length; i++)
-                    {
-                        for(int j = 0; j < maze.length; j++)
-                        {
-                            {
-                                //System.out.print(" ");
-                            }
-                        }
-
+                    for (int i = 0; i < mazeList.size(); i++) {
+                        mazeList.get(i).setRevealed(true);
                     }
                     break;
                 case "w":
@@ -112,33 +127,40 @@ public class Main {
                 if(hero.getNumPowers() > 0)
                 {
                     monsters.remove(i);
+                    i--;
+                    hero.setMonstersRemain(hero.getMonstersRemain()-1);
                     hero.setNumPowers(hero.numPowers--);
                 }
                 else
                 {
+                    System.out.println("You have died!");
                     gameDone = true;
-                    break;
                 }
             }
+        }
+        if (hero.getMonstersRemain() == 0) {
+            System.out.println("You have won!");
+            gameDone = true;
         }
     }
 
     private static void heroPowerCheck(String[][] maze, Hero hero)
     {
-        if ((hero.getyCoord() == Power.yCoord) && (hero.getxCoord() == Power.xCoord))
+        if ((hero.getyCoord() == power.yCoord) && (hero.getxCoord() == power.xCoord))
         {
             hero.setNumPowers(hero.numPowers++);
             for(int i = 0; i < maze.length; i++)
             {
                 for(int j = 0; j < maze.length; j++)
                 {
-                    if(maze[i][j].equals("Hero") || maze[i][j].equals("Wall"))
+                    if(!(maze[i][j].equals("Hero") && maze[i][j].equals("Wall")))
                     {
                         Random random = new Random();
                         int x = random.nextInt(19); // 0 to 18
                         int y = random.nextInt(14);
-                        Power.xCoord = x;
-                        Power.yCoord = y;
+                        power.xCoord = x;
+                        power.yCoord = y;
+                        mazeList.get((x*18) + y).setType("Power");
                     }
                 }
 
