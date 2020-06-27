@@ -78,10 +78,10 @@ public class Main {
         {
             power = new Power(x,y);
             mazeList.add(new Cell("Power", power.xCoord, power.yCoord, true));
-            mazeList.get((x*20)+y).setType("Power");
-            mazeList.get((x*20)+y).setxCoord(power.xCoord);
-            mazeList.get((x*20)+y).setyCoord(power.yCoord);
-            mazeList.get((x*20)+y).setRevealed(true);
+            mazeList.get((x*18)+y).setType("Power");
+            mazeList.get((x*18)+y).setxCoord(power.xCoord);
+            mazeList.get((x*18)+y).setyCoord(power.yCoord);
+            mazeList.get((x*18)+y).setRevealed(true);
         }
 
         displayHelp();
@@ -139,7 +139,7 @@ public class Main {
     {
         for(int i = 0; i < monsters.size(); i++) // hero vs monster
         {
-            if((hero.getyCoord() == monsters.get(i).getxCoord()) && (hero.getxCoord() == monsters.get(i).getxCoord()))
+            if((hero.getyCoord() == monsters.get(i).getyCoord()) && (hero.getxCoord() == monsters.get(i).getxCoord()))
             {
                 if(hero.getNumPowers() > 0)
                 {
@@ -151,13 +151,13 @@ public class Main {
                 else
                 {
                     System.out.println("You have died!");
-                    gameDone = true;
+                    System.exit(0);
                 }
             }
         }
         if (hero.getMonstersRemain() == 0) {
             System.out.println("You have won!");
-            gameDone = true;
+            System.exit(0);
         }
     }
 
@@ -170,8 +170,8 @@ public class Main {
                 for (int j = 0; j < maze.length; j++) {
                     if (!(strings[j].equals("Hero") && strings[j].equals("Wall"))) {
                         Random random = new Random();
-                        int x = random.nextInt(19) + 1; // 0 to 18
-                        int y = random.nextInt(14) + 1;
+                        int x = random.nextInt(18); // 0 to 18
+                        int y = random.nextInt(13);
                         power.xCoord = x;
                         power.yCoord = y;
                         mazeList.get((x * 18) + y).setType("Power");
